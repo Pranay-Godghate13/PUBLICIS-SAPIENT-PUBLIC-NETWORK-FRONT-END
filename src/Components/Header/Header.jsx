@@ -1,19 +1,15 @@
+import './Header.css';
 function Header() {
-    return (
-        <div>
-            <header className='Header-class'>
-                <nav className='Nav-class'>
-                    <div className='Header-class'>
-                        <h1>PUBLIC SAPIENTS</h1>
-                    </div>
-                    <div className='Home-class'>
-                        <h2>Home</h2>
-                    </div>
-                </nav>
-            </header>
+  return (
+    <header className="header">
+      <nav className="nav">
+        <h1 className="logo">PUBLIC SAPIENTS</h1>
+        <div className="home-button" onClick={() => window.location.href = '/'}>
+          Home
         </div>
-    )
-    
+      </nav>
+    </header>
+  );
 }
 
 export default Header;

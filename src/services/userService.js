@@ -7,6 +7,7 @@ export const loadData = async () => {
 
 export const searchUsers = async (keyword) => {
   return axios.get(`${API_BASE_URL}/user/keyword`, {
-    params: { keyword }
+    params: { keyword },
+    validateStatus: (status) => status < 400
   });
 };

@@ -1,0 +1,27 @@
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.role-filter,
+.sort-button {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #1e88e5;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.sort-button {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.sort-button:hover {
+  background-color: #1565c0;
+}

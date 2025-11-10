@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import Controls from '../components/Controls/Controls';
 import UserGrid from '../components/UserGrid/UserGrid';
 import ErrorFallback from '../components/ErrorFallback/ErrorFallback';
+import axios from 'axios';
 
 function HomePage() {
   const [query, setQuery] = useState('');
@@ -17,7 +18,10 @@ function HomePage() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    loadData().catch(err => console.log('Initial load skipped'));
+    // loadData()
+    loadData()
+    .then(r => console.log("Response:", r.data))
+    .catch(err => console.log('Initial load failed',err));
   }, []);
 
   const handleSearch = async () => {
