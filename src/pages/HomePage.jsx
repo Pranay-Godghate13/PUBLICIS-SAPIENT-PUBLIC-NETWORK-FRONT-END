@@ -21,13 +21,38 @@ function HomePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
+  // useEffect(() => {
+  //   // loadData()
+  //   loadData()
+  //   .then(r => console.log("Response:", r.data))
+  //   .catch(err => console.log('Initial load failed',err));
+  // }, []);
   useEffect(() => {
-    // loadData()
-    loadData()
-    .then(r => console.log("Response:", r.data))
-    .catch(err => console.log('Initial load failed',err));
-  }, []);
+    let retryCount = 0;
+    let maxRetries = 10; // optional limit, or keep infinite
+    let retryDelay = 2000; // 2 seconds
 
+    const fetchData = async () => {
+      try {
+        const r = await loadData();
+        console.log("Response:", r.data);
+        setUsers(r.data.content || []);
+        setFilteredUsers(r.data.content || []);
+        setError(null); // clear error if successful
+      } catch (err) {
+        console.log(`Attempt ${retryCount + 1} failed`, err);
+        retryCount++;
+        if (retryCount <= maxRetries) {
+          setTimeout(fetchData, retryDelay);
+        } else {
+          setError("Unable to connect to backend after multiple attempts.");
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+  
   const handleSearch = async () => {
     if (!query || query.trim().length < 3)
       {
